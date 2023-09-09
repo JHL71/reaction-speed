@@ -18,7 +18,8 @@ const Challenge = ({}: ChallengeProps) => {
       navigate('/');
     }
     if (checkNum.current.length > 9) {
-      navigate(`/result/${uuidv4().slice(-4)}?time=${100}`);
+      let time = ~~(checkNum.current.reduce((ac, cv) => ac + cv) / 10);
+      navigate(`/result/${uuidv4().slice(-4)}?time=${time}`);
     }
   }
 
@@ -33,7 +34,8 @@ const Challenge = ({}: ChallengeProps) => {
       }
     }
     if (checkNum.current.length > 9) {
-      navigate(`/result/${uuidv4().slice(-4)}?time=${100}`);
+      let time = ~~(checkNum.current.reduce((ac, cv) => ac + cv) / 10);
+      navigate(`/result/${uuidv4().slice(-4)}?time=${time}`);
     }
   }
 
@@ -42,7 +44,7 @@ const Challenge = ({}: ChallengeProps) => {
     setTimeout(() => {
       setFlag(true);
       setTime(new Date().getTime());
-    }, Math.random() * 8000 + 1000);
+    }, Math.random() * 4000 + 1000);
   }
 
   useEffect(() => {
@@ -53,8 +55,9 @@ const Challenge = ({}: ChallengeProps) => {
 
   return (
     <Wrap>
-      <div>
-      </div>
+      <Progress>
+        <Bar $len={checkNum.current.length}></Bar>
+      </Progress>
       <Button 
         $flag={flag}
         onMouseDown={onMouseDown}
@@ -72,14 +75,30 @@ const Wrap = styled.div`
   width: 100%;
   height: 100vh;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`
+
+const Progress = styled.div`
+  width: 800px;
+  height: 20px;
+  background-color: #aaaaaa;
+`
+
+const Bar = styled.div<{$len: number}>`
+  width: ${props => props.$len * 80}px;
+  height: 20px;
+  background-color: yellow;
+  transition: all 0.5s ease;
 `
 
 const Button = styled.button<{$flag: boolean}>`
   width: 800px;
   height: 200px;
-  background-color: ${props => props.$flag ? 'lime' : 'tomato'}
+  background-color: ${props => props.$flag ? 'lime' : 'tomato'};
+  outline: none;
+  border: none;
 `
 
 
