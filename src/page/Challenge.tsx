@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { v4 as uuidv4} from "uuid";
 
-const Challenge = ({}: ChallengeProps) => {
+const Challenge = () => {
   const [flag, setFlag] = useState(false);
   const [time, setTime] = useState(0);
   const checkNum = useRef<number[]>([]);

@@ -4,21 +4,6 @@ import Challenge from '../page/Challenge';
 import Result from '../page/Result';
 
 
-declare global {
-  interface HomeProps {
-
-  }
-  
-  interface ChallengeProps {
-
-  }
-
-  interface ResultProps {
-
-  }
-}
-
-
 const AppRouter = () => {
   return (
     <Router>
